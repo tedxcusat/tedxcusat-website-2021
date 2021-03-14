@@ -5,6 +5,7 @@ import HeroSection from '../sections/Home/HeroSection'
 import AboutSection from '../sections/Home/AboutSection'
 import ThemeSection from '../sections/Home/ThemeSection'
 import TalksSpeakers from '../sections/Home/TalksSpeakers'
+import Footer from '../sections/Home/Footer'
 
 export default function Home() {
   return <main>
@@ -12,5 +13,6 @@ export default function Home() {
     <AboutSection />
     <ThemeSection />
     <TalksSpeakers />
+    <Footer />
   </main>
 }
