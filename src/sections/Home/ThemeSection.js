@@ -1,17 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import themeImage from './assets/theme-section-graphic.jpg'
 import pauseIcon from './assets/pauseIcon.svg'
 import resetIcon from './assets/Reset.svg'
 import restartIcon from './assets/restart.svg'
-
+import lax from 'lax.js'
 
 function ThemeSection(props) {
+    useEffect(() => {
+        lax.init();
+        lax.addDriver("scrollY", function () {
+          return window.scrollY;
+        });
+        lax.addElements('.slideLeft', {
+            scrollY: {
+              translateX: [
+                ["elInY", "elCenterY", "elOutY"],
+                [0, '-screenWidth/10', '-screenWidth/5'],
+              ],
+              opacity: [
+                ["elInY", "elCenterY", "elOutY"],
+                [0, 0.1, 0.2],
+              ]
+            }
+          })
+        lax.addElements('.slideRight', {
+            scrollY: {
+              translateX: [
+                ["elInY", "elCenterY", "elOutY"],
+                ['-screenWidth/5', '-screenWidth/10', 0],
+              ],
+              opacity: [
+                ["elInY", "elCenterY", "elOutY"],
+                [0, 0.1, 0.2],
+              ]
+            }
+          })
+
+      }, []);
     return (
         <section
             className="flex w-full bg-grey-500"
         >   
             <div className="hidden lg:block bg-red-500 w-4/12">
-                <img className="object-cover w-full h-full" src={themeImage} alt=""/>
+                <img className="sideLeft object-cover w-full h-full" src={themeImage} alt=""/>
             </div>
             <div className="relative flex p-10 flex-col w-full justify-center lg:w-8/12 md:p-20">
                 <h2 className="text-3xl font-extrabold">THEME</h2>
@@ -31,10 +62,7 @@ function ThemeSection(props) {
                     and challenging times that we are journeying through.
                 </p>
                 <div 
-                    data-lax-scale="0 1, vh 0.2"
-                    data-lax-translate-y="0 0, vh 1200"
-                    data-lax-opacity="0 1, (vh*0.5) 0"
-                    className="lax flex flex-wrap my-5">
+                    className="flex flex-wrap my-5">
                     <div className="flex w-26 p-1 px-2 md:w-36 lg:w-48 md:p-3 md:px-5 justify-center rounded-lg items-center mr-2 md:mr-5 mb-5 bg-tedxRedDarker">
                         <img className="w-2 md:w-3 mr-2" src={pauseIcon} alt=""/>
                         <p className="text-base md:text-xl lg:text-2xl font-bold text-white">PAUSE</p>
@@ -49,11 +77,11 @@ function ThemeSection(props) {
                     </div>
                 </div>
                 <div style={{zIndex: -10}} className="flex flex-col justify-evenly overflow-hidden absolute bottom-0 left-0 w-full h-full z-0">
-                    <p className="whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
-                    <p className="whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
-                    <p className="whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
-                    <p className="whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
-                    <p className="whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
+                    <p className="slideLeft whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
+                    <p className="slideRight whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
+                    <p className="slideLeft whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
+                    <p className="slideRight whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART RESTART PAUSE RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
+                    <p className="slideLeft whitespace-nowrap text-9xl font-extrabold text-tedxRed opacity-10">RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART RESET RESTART PAUSE RESET RESTART PAUSE RESET RESTART</p>
                 </div>
             </div>
         </section>
