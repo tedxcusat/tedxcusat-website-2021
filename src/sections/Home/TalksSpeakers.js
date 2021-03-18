@@ -94,13 +94,13 @@ let SpeakerCard = ({speakerName,designation,talkTitle,photo}) =>{
     <img src={photo || qnMarkPhoto} className="w-full rounded-xl" draggable="false"  alt=""/>
     <div className="p-5">
       <h1 className="text-2xl font-bold mb-2">{speakerName || 'Speaker Releasing Soon'}</h1>
-      <p className="text-normal">{designation || <div className="flex items-center justify-center">
+      <div className="text-normal">{designation || <div className="flex items-center justify-center">
         <p className="text-xs">Watch out for latest speaker release on INstagram</p><a 
             href="https://www.instagram.com/tedxcusat/">
             <img className="w-5 mr-3" src={instagramIcon} alt=""/>   
         </a>
       </div> }
-         </p>
+         </div>
          {talkTitle && <p className="text-tedxRed uppercase font-semibold mt-5">{talkTitle}</p>}
     </div>
   </div>

@@ -5,8 +5,10 @@ import {
   softShadows,
   Text,
   PerspectiveCamera,
+  useGLTF,
+  Cloud,
   OrbitControls,
-  useGLTF
+  ContactShadows
 } from '@react-three/drei'
 import Effects from './Effects'
 import { useSpring, animated } from 'react-spring/three'
@@ -20,31 +22,24 @@ softShadows();
 
 function HeroSection(props) {
     let [isActive,setActive] = useState(false)
-    const boxRef = useRef()
     const textRef = useRef()
+    const TEDxBoxRef = useRef()
     let {pos} = useSpring({
-      pos: isActive ? [0,1,3] : [0,1.5,1],
+      pos: isActive ? [0,1.2,4.7] : [0,2,1],
   
     })
     const { canvasRef, inView } = useInView()
 
     return (
         <section ref={canvasRef}>
-          <React.Suspense fallback={null}>
+          <React.Suspense fallback={<div>Loading....</div>}>
             <Canvas  shadowMap>
                 {!inView && <DisableRender />}
                 <Camera />
                 {/* <OrbitControls /> */}
                 {/* <fog /> */}
                 {/* <fog attach="fog" args={["#272730", 3, 2]} /> */}
-                {/* <React.Suspense fallback={null}>
-                  <Cloud
-                    length={0.07}
-                    position={[0, 0, 0]} 
-                    width={1} args={[3, 2]}
-                    opacity={0.2}
-                    />
-                </React.Suspense> */}
+               
                 <ambientLight intensity={0.5} />
                 <directionalLight
                   castShadow
@@ -79,14 +74,23 @@ function HeroSection(props) {
                 >X</Text>
                 <React.Suspense fallback={null}>
                   <TEDxProp />
-                  <TEDxCube />
+                  <TEDxCube isActive={isActive} setActive={setActive} pos={pos} TEDxBoxRef={TEDxBoxRef} />
                 </React.Suspense>
-                <Box boxRef={boxRef} pos={pos} isActive={isActive} setActive={setActive}/>
+                {/* <Box boxRef={boxRef} pos={pos} isActive={isActive} setActive={setActive}/> */}
                 <ShadowPlane />
                 <TEDxCarpet />
                 <GroundPlane />
                 <PlaneBack />
-                <Effects textRef={textRef} boxRef={boxRef} />
+                {/* <React.Suspense fallback={null}>
+                  <Cloud
+                    length={0.007}
+                    position={[0, 3, -10]} 
+                    width={0.001} args={[3, 2]}
+                    opacity={0.1}
+                    />
+                </React.Suspense> */}
+                <ContactShadows position={[0, 0, 0]} width={10} height={10} far={20} rotation={[Math.PI / 3, 0, 0]} />
+                <Effects textRef={textRef} />
             </Canvas>
           </React.Suspense>
         </section>
@@ -94,18 +98,6 @@ function HeroSection(props) {
   }
 
   export default HeroSection;
-
-  let Box = ({isActive,setActive,pos,boxRef}) =>{
-    
-    useFrame(()=>{
-      boxRef.current.rotation.z = boxRef.current.rotation.z += 0.01
-      boxRef.current.rotation.y = boxRef.current.rotation.y += 0.01
-    })
-    return <animated.mesh ref={boxRef} onClick={e => setActive(!isActive)} rotation={[90,0,0]} position={pos} castShadow>
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshPhysicalMaterial attach="material" color="white" />
-    </animated.mesh>
-  }
 
 let ShadowPlane = () =>{
     return <mesh rotation={[90,0,0]} receiveShadow position={[0,0.1,0]}>
@@ -116,13 +108,13 @@ let ShadowPlane = () =>{
 let GroundPlane = () =>{
   return <mesh rotation={[90,0,0]}  position={[0,-0.1,0]}>
       <planeBufferGeometry attach="geometry" args={[1000,1000]}  />
-      <meshBasicMaterial attach='material' color="white" opacity={1} side={THREE.DoubleSide} />
+      <meshBasicMaterial attach='material' color="black" opacity={1} side={THREE.DoubleSide} />
     </mesh>
 } 
 let PlaneBack = () =>{
   return <mesh rotation={[0,0,90]}  position={[0,-0.1,-30]}>
       <planeBufferGeometry attach="geometry" args={[100,100]}  />
-      <meshBasicMaterial attach='material' color="white" opacity={1} side={THREE.DoubleSide} />
+      <meshBasicMaterial attach='material' color="black" opacity={1} side={THREE.DoubleSide} />
     </mesh>
 } 
 let TEDxCarpet = () =>{
@@ -161,15 +153,24 @@ let TEDxProp = () =>{
 
 }
 
-let TEDxCube = () =>{
+let TEDxCube = ({TEDxBoxRef,pos,setActive,isActive}) =>{
   const { nodes, materials } = useGLTF('/tedx_cube.glb')
+  useFrame(()=>{
+    TEDxBoxRef.current.rotation.z = TEDxBoxRef.current.rotation.z += 0.01
+    TEDxBoxRef.current.rotation.y = TEDxBoxRef.current.rotation.y += 0.01
+  })
+  
   return (
-    <group dispose={null}>
-      <group position={[0, 0, 0]}>
-        <mesh material={materials.Material} geometry={nodes.Cube_1.geometry} />
-        <mesh material={materials['Material.001']} geometry={nodes.Cube_2.geometry} />
-      </group>
-    </group>
+    // <Center>
+      <animated.mesh ref={TEDxBoxRef} onClick={e => setActive(!isActive)} position={pos} scale={[0.5,0.5,0.5]} castShadow>
+        <group  dispose={null}>
+          <group position={[0, 0, 0]} rotation={[0,0,0]}>
+            <mesh material={materials.Material} geometry={nodes.Cube_1.geometry} />
+            <mesh material={materials['Material.001']} geometry={nodes.Cube_2.geometry} />
+          </group>
+        </group>
+      </animated.mesh>
+    // </Center>
   )
 }
 
