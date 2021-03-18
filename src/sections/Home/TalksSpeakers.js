@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import lax from 'lax.js'
 import useScrollBox from './useScrollBox';
 
+import ACKphoto from './assets/ack.jpg'
+import qnMarkPhoto from './assets/qnsmark.jpg'
+import instagramIcon from './assets/instagram.svg'
+
 function TalksSpeakers(props) {
     useEffect(() => {
         
@@ -53,7 +57,12 @@ function TalksSpeakers(props) {
               ref={scrollWrapperRef}
               style={{ userSelect: 'none', cursor: isDragging ? 'grabbing' : 'grab', pointerEvents: isDragging ? 'none' : undefined}}
               className="flex absolute w-full pl-5 pr-10 -left-0 no-scrollbar overflow-x-scroll p-5 my-5 box-border" >
-              <SpeakerCard data={1}/>
+              <SpeakerCard 
+                speakerName="Mr. ACK Nair"
+                designation="Director, CIAL"
+                talkTitle="i dont know bro"
+                photo={ACKphoto}
+              />
               <SpeakerCard data={2}/>
               <SpeakerCard data={3}/>
               <SpeakerCard data={4}/>
@@ -80,13 +89,19 @@ function TalksSpeakers(props) {
 
 export default TalksSpeakers;
 
-let SpeakerCard = ({speakerName,designation,talkTitle}) =>{
+let SpeakerCard = ({speakerName,designation,talkTitle,photo}) =>{
   return <div className="w-64 flex-shrink-0 rounded-xl shadow-md bg-white mx-5 overflow-hidden hover:scale-125 hover:mx-10">
-    <img src="https://picsum.photos/200/200" className="w-full rounded-xl" draggable="false"  alt=""/>
+    <img src={photo || qnMarkPhoto} className="w-full rounded-xl" draggable="false"  alt=""/>
     <div className="p-5">
-      <h1 className="text-2xl font-bold mb-2">Speaker Name</h1>
-      <p className="text-normal">crap loads of designations will be here</p>
-      <p className="text-tedxRed uppercase font-semibold mt-5">really long Talk title goes here</p>
+      <h1 className="text-2xl font-bold mb-2">{speakerName || 'Speaker Releasing Soon'}</h1>
+      <p className="text-normal">{designation || <div className="flex items-center justify-center">
+        <p className="text-xs">Watch out for latest speaker release on INstagram</p><a 
+            href="https://www.instagram.com/tedxcusat/">
+            <img className="w-5 mr-3" src={instagramIcon} alt=""/>   
+        </a>
+      </div> }
+         </p>
+         {talkTitle && <p className="text-tedxRed uppercase font-semibold mt-5">{talkTitle}</p>}
     </div>
   </div>
 }
