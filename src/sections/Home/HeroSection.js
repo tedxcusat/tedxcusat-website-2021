@@ -31,14 +31,15 @@ function HeroSection(props) {
     const { canvasRef, inView } = useInView()
 
     return (
-        <section ref={canvasRef}>
+        <section ref={canvasRef} id="home">
           <React.Suspense fallback={<div>Loading....</div>}>
             <Canvas  shadowMap>
+                {/* <fog attach="fog" args={['#cc7b32', 0, 5000]} /> */}
                 {!inView && <DisableRender />}
                 <Camera />
                 {/* <OrbitControls /> */}
                 {/* <fog /> */}
-                {/* <fog attach="fog" args={["#272730", 3, 2]} /> */}
+                <fog attach="fog" args={["red", 5, 100]} />
                
                 <ambientLight intensity={0.5} />
                 <directionalLight

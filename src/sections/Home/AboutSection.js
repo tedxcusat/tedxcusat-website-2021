@@ -3,7 +3,7 @@ import React from 'react';
 function AboutSection(props) {
     return (
         <section
-            
+            id="about"
             style={{background: 'linear-gradient(180deg, #290101 0%, #000000 30%)'}}
         >   
             <div

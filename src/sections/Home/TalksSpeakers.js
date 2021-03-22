@@ -39,6 +39,7 @@ function TalksSpeakers(props) {
     const { isDragging } = useScrollBox(scrollWrapperRef);
     return (
         <section
+        id="talks"
             className="flex w-full justify-center bg-grey-500 relative min-h-screen rounded-b-3xl shadow-2xl"
         >   
           <div className="w-10/12 md:w-5/12 lg:w-4/12 p-5 my-20 mb-32 pb-10" style={{

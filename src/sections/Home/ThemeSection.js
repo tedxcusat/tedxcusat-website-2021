@@ -39,7 +39,8 @@ function ThemeSection(props) {
       }, []);
     return (
         <section
-            className="flex w-full bg-grey-500"
+          id="theme"
+          className="flex w-full bg-grey-500"
         >   
             <div className="hidden lg:block bg-red-500 w-4/12">
                 <img className="sideLeft object-cover w-full h-full" src={themeImage} alt=""/>
