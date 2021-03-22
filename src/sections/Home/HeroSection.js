@@ -3,7 +3,6 @@ import { Canvas, useFrame, useThree, useLoader} from "react-three-fiber"
 import * as THREE from "three";
 import {
   softShadows,
-  Text,
   PerspectiveCamera,
   useGLTF,
   // Cloud,
@@ -56,25 +55,9 @@ function HeroSection(props) {
                   color="blue"
                 />
                 <pointLight position={[10, 10, 10]} />
-                <Text
-                  position={[0,-2,-1.5]}
-                  rotation={[0,0,0]}
-                  color={'rgba(0, 0, 0, 0)'}
-                  fontSize={10}
-                  maxWidth={200}
-                  // lineHeight={1}
-                  letterSpacing={0.02}
-                  textAlign={'center'}
-                  font="fonts/helveticaneue.woff"
-                  anchorX="center"
-                  anchorY="bottom"
-                  outlineColor="red"
-                  outlineWidth={0.05}
-                  outlineOpacity={1}
-                  ref={textRef}
-                >X</Text>
                  {!isSSR && (
                     <React.Suspense fallback={null}>
+                      <LetterX />
                       <TEDxProp />
                       <TEDxCube isActive={isActive} setActive={setActive} pos={pos} TEDxBoxRef={TEDxBoxRef} />
                     </React.Suspense>
@@ -129,15 +112,17 @@ let TEDxCarpet = () =>{
 
 let Camera = () =>{
   const { camera } = useThree();
-  const { z, rotZ } = useSpring({
+  const { z, rotZ, y} = useSpring({
     from: { z: 0, rotZ: 0.5 },
     config: { tension: 100, friction: 100 },
     z: 8,
-    rotZ: 0
+    rotZ: 0,
+    y: isMobile ? 2 : 1
   });
   useFrame(() => {
       camera.position.z = z.value;
       camera.rotation.z = rotZ.value;
+      camera.position.y = y.value;
   });
   return <PerspectiveCamera 
       makeDefault
@@ -177,5 +162,27 @@ let TEDxCube = ({TEDxBoxRef,pos,setActive,isActive}) =>{
   )
 }
 
+let LetterX = (props) => {
+  const { nodes, materials } = useGLTF('/x.glb')
+  const { rot } = useSpring({
+    from: { rot: [0,2,0] },
+    config: { tension: 100, friction: 50 },
+    rot: [0,0,0],
+  });
+  return (
+    <animated.mesh rotation={rot} position={[0, 4.5, -2]} scale={[15,15,15]} castShadow>
+      <group dispose={null}>
+        <group position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh material={materials['Material.001']} geometry={nodes.x001.geometry} />
+          <mesh material={materials['Material.002']} geometry={nodes.x001_1.geometry} />
+        </group>
+      </group>
+    </animated.mesh>
+  )
+}
+
+useGLTF.preload('/x.glb')
+useGLTF.preload('/tedx_cube.glb')
+useGLTF.preload('/TEDx.glb')
 
 const DisableRender = () => useFrame(() => null, 1000)
