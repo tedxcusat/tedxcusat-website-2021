@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react';
-import { EffectComposer, ChromaticAberration, Bloom, SelectiveBloom, Noise, Vignette} from "react-postprocessing"
+import { EffectComposer, ChromaticAberration, Bloom, Noise} from "react-postprocessing"
 
 function Effects({TEDxBoxRef,lights,textRef}) {
     return (

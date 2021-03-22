@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../sections/Home/assets/logo.png'
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
 import styled from 'styled-components'
 import HamburgerMenu from 'react-hamburger-menu'
 import { motion, AnimatePresence } from "framer-motion"

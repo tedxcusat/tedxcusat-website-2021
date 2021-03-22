@@ -6,8 +6,8 @@ import {
   Text,
   PerspectiveCamera,
   useGLTF,
-  Cloud,
-  OrbitControls,
+  // Cloud,
+  // OrbitControls,
   ContactShadows
 } from '@react-three/drei'
 import Effects from './Effects'
