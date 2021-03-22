@@ -1,9 +1,8 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import { EffectComposer, ChromaticAberration, Bloom, Noise} from "react-postprocessing"
 
 function Effects({TEDxBoxRef,lights,textRef}) {
     return (
-    <Suspense fallback={null}>
         <EffectComposer>
             <ChromaticAberration  offset={[0.001, 0.001]} />
             {/* <SSAO /> */}
@@ -15,7 +14,6 @@ function Effects({TEDxBoxRef,lights,textRef}) {
             <Noise opacity={0.02} />
             {/* <Vignette eskil={false} offset={0.1} darkness={0.5} /> */}
         </EffectComposer>
-    </Suspense>
     );
 }
 

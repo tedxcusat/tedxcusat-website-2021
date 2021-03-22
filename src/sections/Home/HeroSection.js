@@ -17,7 +17,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { isMobile } from "react-device-detect";
 
 
-
 softShadows();
 
 function HeroSection(props) {
@@ -29,10 +28,11 @@ function HeroSection(props) {
   
     })
     const { canvasRef, inView } = useInView()
+    const isSSR = typeof window === "undefined"
 
     return (
         <section ref={canvasRef} id="home">
-          <React.Suspense fallback={<div>Loading....</div>}>
+          {/* <React.Suspense fallback={<div>Loading....</div>}> */}
             <Canvas  shadowMap>
                 {/* <fog attach="fog" args={['#cc7b32', 0, 5000]} /> */}
                 {!inView && <DisableRender />}
@@ -73,10 +73,12 @@ function HeroSection(props) {
                   outlineOpacity={1}
                   ref={textRef}
                 >X</Text>
-                <React.Suspense fallback={null}>
-                  <TEDxProp />
-                  <TEDxCube isActive={isActive} setActive={setActive} pos={pos} TEDxBoxRef={TEDxBoxRef} />
-                </React.Suspense>
+                 {!isSSR && (
+                    <React.Suspense fallback={null}>
+                      <TEDxProp />
+                      <TEDxCube isActive={isActive} setActive={setActive} pos={pos} TEDxBoxRef={TEDxBoxRef} />
+                    </React.Suspense>
+                 )}
                 {/* <Box boxRef={boxRef} pos={pos} isActive={isActive} setActive={setActive}/> */}
                 <ShadowPlane />
                 <TEDxCarpet />
@@ -93,7 +95,7 @@ function HeroSection(props) {
                 <ContactShadows position={[0, 0, 0]} width={10} height={10} far={20} rotation={[Math.PI / 3, 0, 0]} />
                 <Effects textRef={textRef} />
             </Canvas>
-          </React.Suspense>
+          {/* </React.Suspense> */}
         </section>
     );
   }
