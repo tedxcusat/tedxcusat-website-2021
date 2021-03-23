@@ -39,11 +39,11 @@ function AboutSection(props) {
                     Are you ready to be radically open about the stuff of life? But we are..!!
                 </p>
             </div>
-            <div className= "flex flex-wrap min-w-full max-w-md content-around justify-center mx-auto pb-10 bg-green-400">
-                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="https://picsum.photos/400/200" width="200" height="100" alt=""/>
-                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="https://picsum.photos/400/200" width="200" height="100" alt=""/>
-                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="https://picsum.photos/400/200" width="200" height="100" alt=""/>
-                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="https://picsum.photos/400/200" width="200" height="100" alt=""/>
+            <div className= "flex flex-wrap min-w-full max-w-md content-around justify-center mx-auto pb-20 bg-green-400">
+                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="/aboutPhotos/ab-p-1.jpg" width="200" height="100" alt=""/>
+                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="/aboutPhotos/ab-p-2.jpg" width="200" height="100" alt=""/>
+                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="/aboutPhotos/ab-p-3.jpg" width="200" height="100" alt=""/>
+                <img className="about-image rounded-lg mx-2 w-1/3 md:w-2/12 md:mx-7 mb-5" src="/aboutPhotos/ab-p-4.jpg" width="200" height="100" alt=""/>
             </div>
         </section>
     );

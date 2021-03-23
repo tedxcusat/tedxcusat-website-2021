@@ -23,7 +23,7 @@ function HeroSection(props) {
     const textRef = useRef()
     const TEDxBoxRef = useRef()
     let {pos} = useSpring({
-      pos: isActive ? [0,1.2,4.7] : [0,2,1],
+      pos: isActive ? isMobile ? [0,5,1] : [0,1.2,4.7]  : [0,2,1],
   
     })
     const { canvasRef, inView } = useInView()
@@ -60,11 +60,11 @@ function HeroSection(props) {
                       <LetterX />
                       <TEDxProp />
                       <TEDxCube isActive={isActive} setActive={setActive} pos={pos} TEDxBoxRef={TEDxBoxRef} />
+                      <TEDxCarpet />
                     </React.Suspense>
                  )}
                 {/* <Box boxRef={boxRef} pos={pos} isActive={isActive} setActive={setActive}/> */}
                 <ShadowPlane />
-                <TEDxCarpet />
                 <GroundPlane />
                 <PlaneBack />
                 {/* <React.Suspense fallback={null}>
@@ -104,9 +104,13 @@ let PlaneBack = () =>{
     </mesh>
 } 
 let TEDxCarpet = () =>{
+  const normal = useLoader(THREE.TextureLoader, "seamless_carpet_texture_NORMAL2.jpg");
     return <mesh rotation={[90,0,0]} >
-      <circleBufferGeometry attach="geometry" args={[3,52]}  />
-      <meshPhongMaterial  attach='material' color="red" opacity={1} side={THREE.DoubleSide} />
+      <circleBufferGeometry attach="geometry" args={[3,80]}  />
+      <meshPhongMaterial  
+        normalMap={normal}
+        normalScale={ new THREE.Vector2( 1, 1 )}
+        attach='material' color="red" opacity={1} side={THREE.DoubleSide} />
     </mesh>
   }
 
@@ -117,7 +121,7 @@ let Camera = () =>{
     config: { tension: 100, friction: 100 },
     z: 8,
     rotZ: 0,
-    y: isMobile ? 2 : 1
+    y: isMobile ? 2 : 0.5
   });
   useFrame(() => {
       camera.position.z = z.value;
@@ -135,7 +139,7 @@ let Camera = () =>{
 let TEDxProp = () =>{
   const gltf = useLoader(GLTFLoader, '/TEDx.glb')
   return <mesh castShadow receiveShadow>
-    <primitive  scale={ isMobile ? [0.02,0.02,0.02] : [0.04,0.04,0.04]} object={gltf.scene} position={isMobile ? [0.0,3,0.02] :[0, 0, 0]} />
+    <primitive  scale={ isMobile ? [0.02,0.02,0.02] : [0.04,0.04,0.04]} object={gltf.scene} position={isMobile ? [0.0,4,0.02] :[0, 0, 0]} />
     <meshBasicMaterial attach='material' color="red" opacity={1} side={THREE.DoubleSide} />
   </mesh>
 
