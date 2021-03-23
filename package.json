@@ -17,6 +17,7 @@
     "@react-three/drei": "^3.9.0",
     "framer-motion": "^4.0.0",
     "gatsby": "^2.26.1",
+    "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-smoothscroll": "^1.2.0",
     "lax.js": "^2.0.3",
     "locomotive-scroll": "^4.1.0",

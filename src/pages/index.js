@@ -8,6 +8,7 @@ import TalksSpeakers from '../sections/Home/TalksSpeakers'
 import Footer from '../sections/Home/Footer'
 import Navbar from '../common/Navbar'
 import AnimatedCursor from "react-animated-cursor";
+import SponsorsSection from "../sections/Home/SponsorsSection"
 
 export default function Home() {
   const isSSR = typeof window === "undefined"
@@ -26,6 +27,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ThemeSection />
+      <SponsorsSection />
       <TalksSpeakers />
       <Footer />
   </main>

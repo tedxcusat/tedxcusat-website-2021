@@ -5,16 +5,12 @@ import {
   softShadows,
   PerspectiveCamera,
   useGLTF,
-  // Cloud,
-  // OrbitControls,
-  ContactShadows
 } from '@react-three/drei'
 import Effects from './Effects'
 import { useSpring, animated } from 'react-spring/three'
 import { useInView } from 'react-intersection-observer'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { isMobile } from "react-device-detect";
-
 
 softShadows();
 
@@ -23,7 +19,7 @@ function HeroSection(props) {
     const textRef = useRef()
     const TEDxBoxRef = useRef()
     let {pos} = useSpring({
-      pos: isActive ? isMobile ? [0,5,1] : [0,1.2,4.7]  : [0,2,1],
+      pos: isActive ? isMobile ? [0,2,4] : [0,1.2,4.7]  : [0,2,1],
   
     })
     const { canvasRef, inView } = useInView()
@@ -31,6 +27,7 @@ function HeroSection(props) {
 
     return (
         <section ref={canvasRef} id="home">
+          <img className="scroll-down-icon" src='/scrollDown.svg' alt=""/>
           {/* <React.Suspense fallback={<div>Loading....</div>}> */}
             <Canvas  shadowMap>
                 {/* <fog attach="fog" args={['#cc7b32', 0, 5000]} /> */}
@@ -75,7 +72,7 @@ function HeroSection(props) {
                     opacity={0.1}
                     />
                 </React.Suspense> */}
-                <ContactShadows position={[0, 0, 0]} width={10} height={10} far={20} rotation={[Math.PI / 3, 0, 0]} />
+                {/* <ContactShadows position={[0, 0, 0]} width={10} height={10} far={20} rotation={[Math.PI / 3, 0, 0]} /> */}
                 <Effects textRef={textRef} />
             </Canvas>
           {/* </React.Suspense> */}
