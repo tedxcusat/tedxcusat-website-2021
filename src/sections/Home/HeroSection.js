@@ -26,7 +26,7 @@ function HeroSection(props) {
     const isSSR = typeof window === "undefined"
 
     return (
-        <section ref={canvasRef} id="home">
+        <section ref={canvasRef} id="home" className="bg-black">
           <img className="scroll-down-icon" src='/scrollDown.svg' alt=""/>
           {/* <React.Suspense fallback={<div>Loading....</div>}> */}
             <Canvas  shadowMap>

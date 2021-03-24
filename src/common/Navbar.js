@@ -21,10 +21,10 @@ function Navbar(props) {
             linkName: 'Talks and Speakers',
             linkUrl: '#talks'
         },
-        // {
-        //     linkName: 'Sponsors',
-        //     linkUrl: '#sponsors'
-        // },
+        {
+            linkName: 'Sponsors',
+            linkUrl: '#sponsors'
+        },
         
     ]
     let [isHamOpen,setIsHamOpen] = useState(false)
