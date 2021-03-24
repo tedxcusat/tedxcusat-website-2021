@@ -7,13 +7,13 @@ import ThemeSection from '../sections/Home/ThemeSection'
 import TalksSpeakers from '../sections/Home/TalksSpeakers'
 import Footer from '../sections/Home/Footer'
 import Navbar from '../common/Navbar'
-import AnimatedCursor from "react-animated-cursor";
+// import AnimatedCursor from "react-animated-cursor";
 import SponsorsSection from "../sections/Home/SponsorsSection"
 
 export default function Home() {
-  const isSSR = typeof window === "undefined"
+  // const isSSR = typeof window === "undefined"
   return <main>
-    {!isSSR && (
+    {/* {!isSSR && (
       <AnimatedCursor
         innerSize={5}
         outerSize={25}
@@ -22,7 +22,7 @@ export default function Home() {
         innerAlpha={0.8}
         innerScale={1}
         outerScale={5}
-      />)}
+      />)} */}
       <Navbar />
       <HeroSection />
       <AboutSection />

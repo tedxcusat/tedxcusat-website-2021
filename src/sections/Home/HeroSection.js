@@ -2,53 +2,35 @@ import React, { useRef, useState } from "react"
 import { Canvas, useFrame, useThree, useLoader} from "react-three-fiber"
 import * as THREE from "three";
 import {
-  softShadows,
   PerspectiveCamera,
   useGLTF,
 } from '@react-three/drei'
-import Effects from './Effects'
+// import Effects from './Effects'
 import { useSpring, animated } from 'react-spring/three'
-import { useInView } from 'react-intersection-observer'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { isMobile } from "react-device-detect";
 
-softShadows();
 
 function HeroSection(props) {
     let [isActive,setActive] = useState(false)
-    const textRef = useRef()
+    // const textRef = useRef()
     const TEDxBoxRef = useRef()
     let {pos} = useSpring({
       pos: isActive ? isMobile ? [0,2,4] : [0,1.2,4.7]  : [0,2,1],
   
     })
-    const { canvasRef, inView } = useInView()
     const isSSR = typeof window === "undefined"
 
     return (
-        <section ref={canvasRef} id="home" className="bg-black">
+        <section id="home" className="bg-black">
           <img className="scroll-down-icon" src='/scrollDown.svg' alt=""/>
-          {/* <React.Suspense fallback={<div>Loading....</div>}> */}
-            <Canvas  shadowMap>
-                {/* <fog attach="fog" args={['#cc7b32', 0, 5000]} /> */}
-                {!inView && <DisableRender />}
+            <Canvas>
                 <Camera />
-                {/* <OrbitControls /> */}
-                {/* <fog /> */}
                 <fog attach="fog" args={["red", 5, 100]} />
-               
                 <ambientLight intensity={0.5} />
                 <directionalLight
-                  castShadow
                   position={[10, 10, 0]}
                   intensity={1}
-                  shadow-mapSize-width={1024}
-                  shadow-mapSize-height={1024}
-                  shadow-camera-far={50}
-                  shadow-camera-left={-10}
-                  shadow-camera-right={10}
-                  shadow-camera-top={10}
-                  shadow-camera-bottom={-10}
                   color="blue"
                 />
                 <pointLight position={[10, 10, 10]} />
@@ -60,46 +42,30 @@ function HeroSection(props) {
                       <TEDxCarpet />
                     </React.Suspense>
                  )}
-                {/* <Box boxRef={boxRef} pos={pos} isActive={isActive} setActive={setActive}/> */}
-                <ShadowPlane />
                 <GroundPlane />
                 <PlaneBack />
-                {/* <React.Suspense fallback={null}>
-                  <Cloud
-                    length={0.007}
-                    position={[0, 3, -10]} 
-                    width={0.001} args={[3, 2]}
-                    opacity={0.1}
-                    />
-                </React.Suspense> */}
-                {/* <ContactShadows position={[0, 0, 0]} width={10} height={10} far={20} rotation={[Math.PI / 3, 0, 0]} /> */}
-                <Effects textRef={textRef} />
+                {/* <Effects textRef={textRef} /> */}
             </Canvas>
-          {/* </React.Suspense> */}
         </section>
     );
   }
 
   export default HeroSection;
 
-let ShadowPlane = () =>{
-    return <mesh rotation={[90,0,0]} receiveShadow position={[0,0.1,0]}>
-      <planeBufferGeometry attach="geometry" args={[100,100]}  />
-      <shadowMaterial attach='material' opacity={0.5} side={THREE.DoubleSide} />
-    </mesh>
-  }
 let GroundPlane = () =>{
   return <mesh rotation={[90,0,0]}  position={[0,-0.1,0]}>
       <planeBufferGeometry attach="geometry" args={[1000,1000]}  />
       <meshBasicMaterial attach='material' color="black" opacity={1} side={THREE.DoubleSide} />
     </mesh>
 } 
+
 let PlaneBack = () =>{
   return <mesh rotation={[0,0,90]}  position={[0,-0.1,-30]}>
       <planeBufferGeometry attach="geometry" args={[100,100]}  />
       <meshBasicMaterial attach='material' color="black" opacity={1} side={THREE.DoubleSide} />
     </mesh>
 } 
+
 let TEDxCarpet = () =>{
   const normal = useLoader(THREE.TextureLoader, "seamless_carpet_texture_NORMAL2.jpg");
     return <mesh rotation={[90,0,0]} >
@@ -135,7 +101,7 @@ let Camera = () =>{
 
 let TEDxProp = () =>{
   const gltf = useLoader(GLTFLoader, '/TEDx.glb')
-  return <mesh castShadow receiveShadow>
+  return <mesh>
     <primitive  scale={ isMobile ? [0.02,0.02,0.02] : [0.04,0.04,0.04]} object={gltf.scene} position={isMobile ? [0.0,4,0.02] :[0, 0, 0]} />
     <meshBasicMaterial attach='material' color="red" opacity={1} side={THREE.DoubleSide} />
   </mesh>
@@ -150,8 +116,7 @@ let TEDxCube = ({TEDxBoxRef,pos,setActive,isActive}) =>{
   })
   
   return (
-    // <Center>
-      <animated.mesh ref={TEDxBoxRef} onClick={e => setActive(!isActive)} position={pos} scale={[0.5,0.5,0.5]} castShadow>
+      <animated.mesh ref={TEDxBoxRef} onClick={e => setActive(!isActive)} position={pos} scale={[0.5,0.5,0.5]}>
         <group  dispose={null}>
           <group position={[0, 0, 0]} rotation={[0,0,0]}>
             <mesh material={materials.Material} geometry={nodes.Cube_1.geometry} />
@@ -159,7 +124,6 @@ let TEDxCube = ({TEDxBoxRef,pos,setActive,isActive}) =>{
           </group>
         </group>
       </animated.mesh>
-    // </Center>
   )
 }
 
@@ -171,7 +135,7 @@ let LetterX = (props) => {
     rot: [0,0,0],
   });
   return (
-    <animated.mesh rotation={rot} position={[0, 4.5, -2]} scale={[15,15,15]} castShadow>
+    <animated.mesh rotation={rot} position={[0, 4.5, -2]} scale={[15,15,15]}>
       <group dispose={null}>
         <group position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <mesh material={materials['Material.001']} geometry={nodes.x001.geometry} />
@@ -185,5 +149,3 @@ let LetterX = (props) => {
 useGLTF.preload('/x.glb')
 useGLTF.preload('/tedx_cube.glb')
 useGLTF.preload('/TEDx.glb')
-
-const DisableRender = () => useFrame(() => null, 1000)
