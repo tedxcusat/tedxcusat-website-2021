@@ -23,7 +23,9 @@ function HeroSection(props) {
 
     return (
         <section id="home" className="bg-black">
-          <img className="scroll-down-icon" src='/scrollDown.svg' alt=""/>
+          <div className="scroll-down-icon">
+            <img src='/scrollDown.svg' alt=""/>
+          </div>
             <Canvas>
                 <Camera />
                 <fog attach="fog" args={["red", 5, 100]} />
