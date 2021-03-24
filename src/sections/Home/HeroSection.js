@@ -1,17 +1,19 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Canvas, useFrame, useThree, useLoader} from "react-three-fiber"
 import * as THREE from "three";
 import {
   PerspectiveCamera,
   useGLTF,
+  useProgress
 } from '@react-three/drei'
+import { a, useTransition } from "@react-spring/web"
 // import Effects from './Effects'
 import { useSpring, animated } from 'react-spring/three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { isMobile } from "react-device-detect";
+import { motion, AnimatePresence } from "framer-motion"
 
-
-function HeroSection(props) {
+function HeroSection({isCanvasLoaded,setIsCanvasLoaded}) {
     let [isActive,setActive] = useState(false)
     // const textRef = useRef()
     const TEDxBoxRef = useRef()
@@ -20,34 +22,38 @@ function HeroSection(props) {
   
     })
     const isSSR = typeof window === "undefined"
-
+    useEffect(()=>{
+      setIsCanvasLoaded(false)
+    },[])
     return (
         <section id="home" className="bg-black">
+          
           <div className="scroll-down-icon">
             <img src='/scrollDown.svg' alt=""/>
           </div>
-            <Canvas>
-                <Camera />
-                <fog attach="fog" args={["red", 5, 100]} />
-                <ambientLight intensity={0.5} />
-                <directionalLight
-                  position={[10, 10, 0]}
-                  intensity={1}
-                  color="blue"
-                />
-                <pointLight position={[10, 10, 10]} />
-                 {!isSSR && (
-                    <React.Suspense fallback={null}>
-                      <LetterX />
-                      <TEDxProp />
-                      <TEDxCube isActive={isActive} setActive={setActive} pos={pos} TEDxBoxRef={TEDxBoxRef} />
-                      <TEDxCarpet />
-                    </React.Suspense>
-                 )}
-                <GroundPlane />
-                <PlaneBack />
-                {/* <Effects textRef={textRef} /> */}
-            </Canvas>
+          <Loader setIsCanvasLoaded={setIsCanvasLoaded} />
+          <Canvas>
+              <Camera isCanvasLoaded={isCanvasLoaded} />
+              <fog attach="fog" args={["red", 5, 100]} />
+              <ambientLight intensity={0.5} />
+              <directionalLight
+                position={[10, 10, 0]}
+                intensity={1}
+                color="blue"
+              />
+              <pointLight position={[10, 10, 10]} />
+                {!isSSR && (
+                  <React.Suspense fallback={null}>
+                    <LetterX />
+                    <TEDxProp />
+                    <TEDxCube isActive={isActive} setActive={setActive} pos={pos} TEDxBoxRef={TEDxBoxRef} />
+                    <TEDxCarpet />
+                    <GroundPlane />
+                    <PlaneBack />
+                  </React.Suspense>
+                )}
+              {/* <Effects textRef={textRef} /> */}
+          </Canvas>
         </section>
     );
   }
@@ -79,13 +85,13 @@ let TEDxCarpet = () =>{
     </mesh>
   }
 
-let Camera = () =>{
+let Camera = ({isCanvasLoaded}) =>{
   const { camera } = useThree();
   const { z, rotZ, y} = useSpring({
     from: { z: 0, rotZ: 0.5 },
     config: { tension: 100, friction: 100 },
-    z: 8,
-    rotZ: 0,
+    z: isCanvasLoaded ? 8 : 0,
+    rotZ: isCanvasLoaded ? 0 : 0.5,
     y: isMobile ? 2 : 0.5
   });
   useFrame(() => {
@@ -151,3 +157,62 @@ let LetterX = (props) => {
 useGLTF.preload('/x.glb')
 useGLTF.preload('/tedx_cube.glb')
 useGLTF.preload('/TEDx.glb')
+
+// function Loader({setIsCanvasLoaded}) {
+//   const { active , progress } = useProgress()
+//   let [ loadingProgress, setLoadingProgress ] = useState(0.0)
+  
+//   useEffect(()=>{
+//     console.log(progress);
+//     setLoadingProgress(progress)
+//     if(progress<100){
+//       setIsCanvasLoaded(false)
+//     }else{
+//       setIsCanvasLoaded(true)
+//     }
+//   },[progress])
+//   return <AnimatePresence>
+//         {
+//           active && <motion.div
+//             initial={{ opacity: 0.5 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+            
+//             className="loading">
+//             <div className="loading-bar-container">
+//               <div className="loading-bar" style={{ width: `${loadingProgress}%` }}>
+//                 <span className="loading-data">{`${loadingProgress.toFixed(2)}%`}</span>
+//               </div>
+//             </div>
+//           </motion.div>
+//         }
+//   </AnimatePresence>
+// }
+function Loader({setIsCanvasLoaded}) {
+  const { active, progress } = useProgress()
+  const transition = useTransition(active, {
+    from: { opacity: 1, progress: 0 },
+    leave: { opacity: 0 },
+    update: { progress },
+  })
+  useEffect(()=>{
+    console.log(progress);
+    if(progress<100){
+      setIsCanvasLoaded(false)
+    }else{
+      setIsCanvasLoaded(true)
+    }
+  },[progress])
+  return transition(
+    ({ progress, opacity }, active) =>
+      active && (
+        <a.div className="loading" style={{ opacity }}>
+          <div className="loading-bar-container">
+            <a.div className="loading-bar" style={{ width: progress + '%' }}>
+              <a.span className="loading-data">{progress.to((p) => `${p.toFixed(2)}%`)}</a.span>
+            </a.div>
+          </div>
+        </a.div>
+      ),
+  )
+}

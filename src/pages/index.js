@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import '../styles/home.css'
 
 import HeroSection from '../sections/Home/HeroSection'
@@ -13,7 +13,8 @@ import Helmet from 'react-helmet'
 import SponsorsSection from "../sections/Home/SponsorsSection"
 
 export default function Home() {
-  // const isSSR = typeof window === "undefined"
+  let [isCanvasLoaded,setIsCanvasLoaded] = useState(false)
+    // const isSSR = typeof window === "undefined"
   return <main>
       <Helmet>
         <meta charSet="utf-8" />
@@ -77,8 +78,9 @@ export default function Home() {
         innerScale={1}
         outerScale={5}
       />)} */}
+      {!isCanvasLoaded && <div style={{zIndex: 60}} className="fixed top-0 left-0 bg-black w-screen h-screen"></div>}
       <Navbar />
-      <HeroSection />
+      <HeroSection isCanvasLoaded={isCanvasLoaded} setIsCanvasLoaded={setIsCanvasLoaded}/>
       <AboutSection />
       <ThemeSection />
       <SponsorsSection />
