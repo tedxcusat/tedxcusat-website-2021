@@ -45,6 +45,9 @@ function AboutSection(props) {
                 <img className="about-image rounded-lg mx-2 w-1/3 h-1/6 md:w-2/12 md:1/12 md:mx-7 mb-5" src="/aboutPhotos/ab-p-3.jpg" width="200" height="100" alt=""/>
                 <img className="about-image rounded-lg mx-2 w-1/3 h-1/6 md:w-2/12 md:1/12 md:mx-7 mb-5" src="/aboutPhotos/ab-p-4.jpg" width="200" height="100" alt=""/>
             </div>
+            <div className="flex w-11/12 md:w-8/12 bg-tedxRed rounded-t-md mx-auto p-4">
+                    <p className="mx-auto text-xl text-center font-bold text-white">TEDxCUSAT is Virtual this time!</p>
+            </div>
         </section>
     );
 }
