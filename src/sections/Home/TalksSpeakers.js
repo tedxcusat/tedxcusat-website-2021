@@ -60,8 +60,8 @@ function TalksSpeakers(props) {
               className="flex absolute w-full pl-5 pr-10 -left-0 no-scrollbar overflow-x-scroll p-5 my-5 box-border" >
               <SpeakerCard 
                 speakerName="Mr. ACK Nair"
-                designation="Director, CIAL"
-                talkTitle="i dont know bro"
+                designation="He is the Airport Director of the Cochin International airport & has been elected to the Asia-Pacific Regional Director’s Board of Airport Council."
+                talkTitle="Talk Title: Kept The Climb"
                 photo={ACKphoto}
               />
               <SpeakerCard data={2}/>
@@ -95,7 +95,7 @@ let SpeakerCard = ({speakerName,designation,talkTitle,photo}) =>{
     <img src={photo || qnMarkPhoto} className="w-full rounded-xl" draggable="false"  alt=""/>
     <div className="p-5">
       <h1 className="text-2xl font-bold mb-2">{speakerName || 'Speaker Releasing Soon'}</h1>
-      <div className="text-normal">{designation || <div className="flex items-center justify-center">
+      <div className="text-sm">{designation || <div className="flex items-center justify-center">
         <p className="text-xs">Watch out for latest speaker release on INstagram</p><a 
             href="https://www.instagram.com/tedxcusat/">
             <img className="w-5 mr-3" src={instagramIcon} alt=""/>   
