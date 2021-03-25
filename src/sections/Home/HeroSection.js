@@ -11,7 +11,6 @@ import { a, useTransition } from "@react-spring/web"
 import { useSpring, animated } from 'react-spring/three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { isMobile } from "react-device-detect";
-import { motion, AnimatePresence } from "framer-motion"
 
 function HeroSection({isCanvasLoaded,setIsCanvasLoaded}) {
     let [isActive,setActive] = useState(false)

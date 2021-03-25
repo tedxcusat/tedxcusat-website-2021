@@ -22,8 +22,8 @@ function Navbar(props) {
             linkUrl: '#talks'
         },
         {
-            linkName: 'Sponsors',
-            linkUrl: '#sponsors'
+            linkName: 'Partners',
+            linkUrl: '#partners'
         },
         
     ]
@@ -60,9 +60,9 @@ function Navbar(props) {
             
             <AnimatePresence>
                 {
-                    isHamOpen && <motion.div 
+                    isHamOpen && <StyledHamMenuList
                                     initial={{ height: 0 }}
-                                    animate={{ height: 'fit-content' }}
+                                    animate={{ height: 250 }}
                                     exit={{ height: 0, opacity: 0 }}
                                     className="ham-menu-list"
                                 >
@@ -75,8 +75,8 @@ function Navbar(props) {
                                             </button>
                                         })
                                     }
-                            <button className="nav-btn">Tickets soon!</button>
-                    </motion.div>
+                                <button className="ham-nav-btn">Tickets soon!</button>
+                    </StyledHamMenuList>
                 }
             </AnimatePresence>
             
@@ -115,25 +115,13 @@ let StyledNav = styled.nav`
         display: none;
         cursor: pointer;
     }
-    .ham-menu-list{
-        position: fixed!important;
-        max-width: 1200px;
-        width: 95vw;
-        background: rgba(0, 0, 0, 0.473);
-        box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.623);
-        display: flex;
-        backdrop-filter: blur(100px);
-        align-items: center;
-        flex-direction: column;
-        top: 100px;
-        left: 0;
-        display: none;
-        box-sizing: border-box;
-        border-radius: 20px;
-        padding: 20px;
-        overflow: hidden;
-        height: fit-content;
-        z-index: 10; 
+    .ham-nav-btn{
+        padding: 5px 10px;
+        background-color: #D92002;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 10px;
+        margin-top: 10px;
     }
     .ham-nav-link{
         font-style: normal;
@@ -178,4 +166,27 @@ let StyledNav = styled.nav`
         }
 
     }
+`
+
+let StyledHamMenuList = styled(motion.div)`
+    position: fixed!important;
+        max-width: 1200px;
+        width: 95vw;
+        background: rgba(0, 0, 0, 0.473);
+        box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.623);
+        display: flex;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(2em);
+        align-items: center;
+        flex-direction: column;
+        top: 100px;
+        left: 0;
+        display: none;
+        box-sizing: border-box;
+        border-radius: 20px;
+        padding: 20px;
+        overflow: hidden;
+        height: 300px;
+        z-index: 11; 
+       
 `
