@@ -4,7 +4,7 @@ function SponsorsSection(props) {
     return (
         <section
             id="partners"
-            className="p-4 bg-gray md:p-20"
+            className="p-4 pt-10 bg-gray md:p-20"
         >   
             <h1 className="text-center text-tedxRed text-5xl font-extrabold uppercase mb-4">SPONSORS</h1>
             <div  style={{maxWidth: 700}} className="flex flex-col w-12/12 md:w-10/12 mx-auto text-center">
@@ -29,6 +29,49 @@ function SponsorsSection(props) {
                     <p className="text-xl font-extrabold uppercase">Tech partner</p>
                     <img className="w-52 my-5 mx-auto" src="chatveda.png" alt=""></img>
                 </div>
+                </div>
+            </div>
+            <h4 className="text-3xl md:text-5xl m-10 font-bold text-tedxRed text-center">TEDxCUAST 2021</h4>
+            <div className="flex flex-wrap justify-center mt-2 text-white">
+                <div className="flex flex-col p-5 m-5 rounded-lg"
+                    style={{
+                        background: 'linear-gradient(180deg, #E12200 0%, #BC1C00 100%)',
+                        boxShadow: '0px 10px 40px rgba(255, 0, 0, 0.58)',
+                        width: 250,
+                        height: 100,
+                      }}
+                >
+                    <p className="font-bold text-center text-lg">1. Grab your tickets</p>
+                </div>
+                <div className="flex flex-col p-5 m-5 rounded-lg "
+                    style={{
+                        background: 'linear-gradient(180deg, #E12200 0%, #BC1C00 100%)',
+                        boxShadow: '0px 10px 40px rgba(255, 0, 0, 0.58)',
+                        width: 250,
+                        height: 100,
+                      }}
+                >
+                    <p className="font-bold text-center text-lg">2. Login TEDxCUSAT website</p>
+                </div>
+                <div className="flex flex-col p-5 m-5 items-center rounded-lg "
+                    style={{
+                        background: 'linear-gradient(180deg, #E12200 0%, #BC1C00 100%)',
+                        boxShadow: '0px 10px 40px rgba(255, 0, 0, 0.58)',
+                        height: 100,
+                        width: 250,
+                      }}
+                >
+                    <p className="font-bold text-center text-lg">3. Stream tedxcusat.in on 5th April at 6:00 pm</p>
+                </div>
+                <div className="flex flex-col p-5 m-5 items-center rounded-lg"
+                    style={{
+                        background: 'linear-gradient(180deg, #E12200 0%, #BC1C00 100%)',
+                        boxShadow: '0px 10px 40px rgba(255, 0, 0, 0.58)',
+                        width: 250,
+                        height: 100,
+                      }}
+                >
+                    <p className="font-bold text-center text-lg">4. Enjoy the talk!</p>
                 </div>
             </div>
         </section>
