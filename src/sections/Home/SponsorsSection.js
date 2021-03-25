@@ -3,7 +3,7 @@ import React from 'react';
 function SponsorsSection(props) {
     return (
         <section
-            id="sponsors"
+            id="partners"
             className="p-4 bg-gray md:p-20"
         >   
             <h1 className="text-center text-tedxRed text-5xl font-extrabold uppercase mb-4">SPONSORS</h1>
