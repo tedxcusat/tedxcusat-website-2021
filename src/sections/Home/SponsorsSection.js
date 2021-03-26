@@ -6,7 +6,7 @@ function SponsorsSection(props) {
             id="partners"
             className="p-4 pt-10 bg-gray md:p-20"
         >   
-            <h1 className="text-center text-tedxRed text-5xl font-extrabold uppercase mb-4">SPONSORS</h1>
+            <h1 className="text-center text-tedxRed text-5xl font-extrabold uppercase mb-4">PARTNERS</h1>
             <div  style={{maxWidth: 700}} className="flex flex-col w-12/12 md:w-10/12 mx-auto text-center">
                 <div className="m-1 w-100 md:m-4 md:w-50">
                     <p className="text-xl font-extrabold uppercase">Platinum partner</p>
