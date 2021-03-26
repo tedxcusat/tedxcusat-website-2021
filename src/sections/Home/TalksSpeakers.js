@@ -52,7 +52,7 @@ function TalksSpeakers(props) {
           }}>
             <div>
               <h1 className="text-4xl text-center text-white font-semibold my-5" >Talks & Speakers</h1>
-              <p className="my-5 text-sm text-center text-white">Some content here please. arelum o content thaa. ivide vallom idanam. balh bleh blooo bleehh</p>
+              <p className="my-5 text-sm text-center text-white">The best minds of the state are coming together under one roof to inspire and spread ideas never seen before!</p>
             </div>
             <div 
               ref={scrollWrapperRef}
@@ -61,7 +61,7 @@ function TalksSpeakers(props) {
               <SpeakerCard 
                 speakerName="Mr. ACK Nair"
                 designation="He is the Airport Director of the Cochin International airport & has been elected to the Asia-Pacific Regional Director’s Board of Airport Council."
-                talkTitle="Talk Title: Kept The Climb"
+                talkTitle="Talk: Kept The Climb"
                 photo={ACKphoto}
               />
               <SpeakerCard data={2}/>
@@ -91,12 +91,12 @@ function TalksSpeakers(props) {
 export default TalksSpeakers;
 
 let SpeakerCard = ({speakerName,designation,talkTitle,photo}) =>{
-  return <div className="w-64 flex-shrink-0 rounded-xl shadow-md bg-white mx-5 overflow-hidden hover:scale-125 hover:mx-10">
+  return <div className="w-64 flex-shrink-0 rounded-xl shadow-lg bg-white mx-5 overflow-hidden hover:scale-125 hover:mx-10">
     <img src={photo || qnMarkPhoto} className="w-full rounded-xl" draggable="false"  alt=""/>
     <div className="p-5">
       <h1 className="text-2xl font-bold mb-2">{speakerName || 'Speaker Releasing Soon'}</h1>
       <div className="text-sm">{designation || <div className="flex items-center justify-center">
-        <p className="text-xs">Watch out for latest speaker release on INstagram</p><a 
+        <p className="text-xs">Watch out for latest speaker release on Instagram</p><a 
             href="https://www.instagram.com/tedxcusat/">
             <img className="w-5 mr-3" src={instagramIcon} alt=""/>   
         </a>

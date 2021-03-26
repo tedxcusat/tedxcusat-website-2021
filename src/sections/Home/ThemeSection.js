@@ -49,7 +49,7 @@ function ThemeSection(props) {
                 <h2 className="text-3xl font-extrabold">THEME</h2>
                 <h1 className="text-4xl lg:text-5xl font-extrabold text-tedxRed">PAUSE. RESET. RESTART.</h1>
                 <p className="text-xs sm:text-sm my-3 md:text-lg font-semibold md:my-5 max-w-4xl">
-                    2020 has been a year unlike any other. The unfolding of a
+                    Unlike any other year, the unfolding of a
                     global pandemic has ushered in a new wave of obstacles
                     that have challenged the human race on an unprecedented
                     scale. These challenging times have demonstrated the 
