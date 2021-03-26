@@ -31,7 +31,7 @@ function SponsorsSection(props) {
                 </div>
                 </div>
             </div>
-            <h4 className="text-3xl md:text-5xl m-10 font-bold text-tedxRed text-center">TEDxCUAST 2021</h4>
+            <h4 className="text-3xl md:text-5xl m-10 font-bold text-tedxRed text-center">TEDxCUSAT 2021</h4>
             <div className="flex flex-wrap justify-center mt-2 text-white">
                 <div className="flex flex-col p-5 m-5 rounded-lg"
                     style={{
