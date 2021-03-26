@@ -195,7 +195,6 @@ function Loader({setIsCanvasLoaded}) {
     update: { progress },
   })
   useEffect(()=>{
-    console.log(progress);
     if(progress<100){
       setIsCanvasLoaded(false)
     }else{
