@@ -33,6 +33,7 @@ function Footer(props) {
             <div className="flex justify-between my-10 mx-20">
                 <div>
                     <h1>© 2021 TEDxCUSAT.</h1>
+                    <a href="https://tedxcusat.in/terms.pdf">Terms & Conditions.</a>
                 </div>
                 <div className="flex">
                     <a 

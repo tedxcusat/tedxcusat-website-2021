@@ -44,7 +44,7 @@ function Navbar(props) {
                     })
                 }
             </div>
-                <button className="nav-btn">Tickets soon!</button>
+                <button onClick={()=>{ window.location.href = "https://app.tedxcusat.in/payment";}} className="nav-btn">Get Tickets</button>
             <HamburgerMenu
                 isOpen={isHamOpen}
                 menuClicked={()=>{setIsHamOpen(!isHamOpen)}}
@@ -75,7 +75,7 @@ function Navbar(props) {
                                             </button>
                                         })
                                     }
-                                <button className="ham-nav-btn">Tickets soon!</button>
+                                <button onClick={()=>{ window.location.href = "https://app.tedxcusat.in/payment";}} className="ham-nav-btn">Tickets soon!</button>
                     </StyledHamMenuList>
                 }
             </AnimatePresence>
