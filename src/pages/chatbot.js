@@ -31,7 +31,7 @@ export default function ChatBot() {
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
        </Helmet>
-      <img className="w-72 m-5" src="logo.png" alt="TEDxCUSAT Logo"/>
+      <img className="w-72 m-5" src="/logo.png" alt="TEDxCUSAT Logo"/>
       <h1 className="text-2xl mx-auto md:text-4xl text-center text-tedxRed">Redirecting to chatbot.....</h1>
   </main>
 }
