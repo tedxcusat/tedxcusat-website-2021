@@ -61,7 +61,7 @@ function TalksSpeakers(props) {
               <SpeakerCard 
                 speakerName="Mr. ACK Nair"
                 designation="He is the Airport Director of the Cochin International airport & has been elected to the Asia-Pacific Regional Director’s Board of Airport Council."
-                talkTitle="Talk: Kept The Climb & Aviation industry in pandemic."
+                talkTitle="Talk: Kept The Climb | Aviation industry in pandemic."
                 photo={ACKphoto}
               />
               <SpeakerCard 
