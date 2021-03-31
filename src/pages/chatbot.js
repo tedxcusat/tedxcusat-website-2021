@@ -1,6 +1,8 @@
 import React from "react"
 import { useEffect } from "react"
-export default function PageNotFound() {
+import Helmet from 'react-helmet'
+
+export default function ChatBot() {
 
     useEffect(()=>{
         window.location.replace("http://wa.me/918075217002?text=Hi");
