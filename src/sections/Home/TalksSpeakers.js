@@ -65,7 +65,7 @@ function TalksSpeakers(props) {
                 photo={ACKphoto}
               />
               <SpeakerCard 
-                speakerName="Mrs. Apoorva Bose"
+                speakerName="Miss Apoorva Bose"
                 designation="Apoorva is an International Human Rights lawyer, a film actress, a dancer and a singer."
                 talkTitle="Talk: Master of none: Overcoming anxiety and self-doubt"
                 photo="/speakers/apoorva.jpg"
@@ -75,6 +75,12 @@ function TalksSpeakers(props) {
                 designation="Dr VP Gangadharan is the senior consultant and head of the department of medical and pediatric oncology, VPS Lakeshore hospital."
                 talkTitle="Talk: Cancer is preventable, screenable, curable."
                 photo="/speakers/vp.jpg"
+              />
+              <SpeakerCard 
+                speakerName="Mr Sharique Shamsudheen"
+                designation="Founder and CEO of Fundfolio, an organization aiming to build India’s largest Community of Financially Independent Individuals."
+                talkTitle="Talk: Everybody can acheive financial freedom"
+                photo="/speakers/sharique.jpeg"
               />
               <SpeakerCard data={4}/>
               <SpeakerCard data={5}/>
@@ -104,7 +110,7 @@ let SpeakerCard = ({speakerName,designation,talkTitle,photo}) =>{
   return <div className="w-64 flex-shrink-0 rounded-xl shadow-lg bg-white mx-5 overflow-hidden hover:scale-125 hover:mx-10">
     <img src={photo || qnMarkPhoto} className="w-full rounded-xl" draggable="false"  alt=""/>
     <div className="p-5">
-      <h1 className="text-xl font-bold mb-2">{speakerName || 'Speaker Releasing Soon'}</h1>
+      <h1 className="text-2xl font-bold mb-2 h-16">{speakerName || 'Speaker Releasing Soon'}</h1>
       <div className="text-sm h-28">{designation || <div className="flex items-center justify-center">
         <p className="text-xs">Watch out for latest speaker release on Instagram</p><a 
             href="https://www.instagram.com/tedxcusat/">
