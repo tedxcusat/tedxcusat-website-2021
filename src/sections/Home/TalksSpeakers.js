@@ -82,7 +82,12 @@ function TalksSpeakers(props) {
                 talkTitle="Talk: Everybody can acheive financial freedom"
                 photo="/speakers/sharique.jpeg"
               />
-              <SpeakerCard data={4}/>
+              <SpeakerCard 
+                speakerName="Mr. Suresh Pillai"
+                designation="Social media sensation and celebrity chef known popularly as chef pillai is culinery director of Raviz kollam and contestant of MasterChef UK 2017."
+                talkTitle="Talk: Journey through the culinery life"
+                photo="/speakers/chef.jpg"
+              />
               <SpeakerCard data={5}/>
               <SpeakerCard data={6}/>
             </div>
