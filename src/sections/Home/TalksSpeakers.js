@@ -88,8 +88,18 @@ function TalksSpeakers(props) {
                 talkTitle="Talk: Journey through the culinery life"
                 photo="/speakers/chef.jpg"
               />
-              <SpeakerCard data={5}/>
-              <SpeakerCard data={6}/>
+              <SpeakerCard 
+                speakerName="Mr. Deepak Vishnu"
+                designation="Widely known as @theclutchless is a content creator, motovlogger and an automotive influencer. Building motorcycles is his greatest passion."
+                talkTitle="Talk: Chasing Dreams and Speed"
+                photo="/speakers/clutchless.jpg"
+              />
+              <SpeakerCard 
+                speakerName="Master Aditya Krishna"
+                designation="Aditya Krishna is a nine year old vivacious and passionate young boy. Aditya studies in St Paul's English School, Bangalore."
+                talkTitle="Talk: A student struck in pandemic"
+                photo="/speakers/aditya.jpg"
+              />
             </div>
           </div>
           
