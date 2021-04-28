@@ -11,7 +11,7 @@ import Helmet from 'react-helmet'
 
 // import AnimatedCursor from "react-animated-cursor";
 import SponsorsSection from "../sections/Home/SponsorsSection"
-import TicketsAreOut from "../sections/Home/TicketsAreOut"
+// import TicketsAreOut from "../sections/Home/TicketsAreOut"
 
 export default function Home() {
   let [isCanvasLoaded,setIsCanvasLoaded] = useState(false)
@@ -82,7 +82,7 @@ export default function Home() {
       {!isCanvasLoaded && <div style={{zIndex: 60}} className="fixed top-0 left-0 bg-black w-screen h-screen"></div>}
       <Navbar />
       <HeroSection isCanvasLoaded={isCanvasLoaded} setIsCanvasLoaded={setIsCanvasLoaded}/>
-      <TicketsAreOut />
+      {/* <TicketsAreOut /> */}
       <AboutSection />
       <ThemeSection />
       <SponsorsSection />
