@@ -1,192 +1,212 @@
-import React, { useState } from 'react';
-import logo from '../sections/Home/assets/logo.png'
+import React, { useState } from "react"
+import logo from "../sections/Home/assets/logo.png"
 // import { Link } from "gatsby"
-import styled from 'styled-components'
-import HamburgerMenu from 'react-hamburger-menu'
+import styled from "styled-components"
+import HamburgerMenu from "react-hamburger-menu"
 import { motion, AnimatePresence } from "framer-motion"
-import scrollTo from 'gatsby-plugin-smoothscroll';
-
+import scrollTo from "gatsby-plugin-smoothscroll"
 
 function Navbar(props) {
-    let navLinks = [
-        {
-            linkName: 'About',
-            linkUrl: '#about',
-        },
-        {
-            linkName: 'Theme',
-            linkUrl: '#theme'
-        },
-        {
-            linkName: 'Talks and Speakers',
-            linkUrl: '#talks'
-        },
-        {
-            linkName: 'Partners',
-            linkUrl: '#partners'
-        },
-        
-    ]
-    let [isHamOpen,setIsHamOpen] = useState(false)
-    return (
-        <StyledNav>
-            <div>
-                <img src={logo} className="nav-logo" alt=""/>
-            </div>
-            <div className="nav-link-container">
-                {
-                    navLinks.map((navLink,id)=>{
-                        return <button 
-                            onClick={() => scrollTo(navLink.linkUrl)}
-                            key={id} className="nav-link" style={{textDecoration: 'none'}}> 
-                            {navLink.linkName}
-                        </button>
-                    })
-                }
-            </div>
-                <button onClick={()=>{ window.location.href = "https://app.tedxcusat.in/stream";}} className="nav-btn">Stream Now</button>
-            <HamburgerMenu
-                isOpen={isHamOpen}
-                menuClicked={()=>{setIsHamOpen(!isHamOpen)}}
-                width={20}
-                height={15}
-                strokeWidth={2}
-                rotate={0}
-                color='#FF4920'
-                borderRadius={0}
-                animationDuration={0.5}
-                className="ham-menu-btn"
-            />
-            
-            <AnimatePresence>
-                {
-                    isHamOpen && <StyledHamMenuList
-                                    initial={{ height: 0 }}
-                                    animate={{ height: 250 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    className="ham-menu-list"
-                                >
-                                    {
-                                        navLinks.map((navLink,id)=>{
-                                            return <button 
-                                                onClick={() => scrollTo(navLink.linkUrl)}
-                                                key={id} className="ham-nav-link" style={{textDecoration: 'none'}}> 
-                                                {navLink.linkName}
-                                            </button>
-                                        })
-                                    }
-                                <button onClick={()=>{ window.location.href = "https://app.tedxcusat.in/stream";}} className="ham-nav-btn">Stream Now</button>
-                    </StyledHamMenuList>
-                }
-            </AnimatePresence>
-            
-            
-        </StyledNav>
-    );
+  let navLinks = [
+    {
+      linkName: "About",
+      linkUrl: "#about",
+    },
+    {
+      linkName: "Theme",
+      linkUrl: "#theme",
+    },
+    {
+      linkName: "Talks and Speakers",
+      linkUrl: "#talks",
+    },
+    {
+      linkName: "Partners",
+      linkUrl: "#partners",
+    },
+  ]
+  let [isHamOpen, setIsHamOpen] = useState(false)
+  return (
+    <StyledNav>
+      <div>
+        <img src={logo} className="nav-logo" alt="" />
+      </div>
+      <div className="nav-link-container">
+        {navLinks.map((navLink, id) => {
+          return (
+            <button
+              onClick={() => scrollTo(navLink.linkUrl)}
+              key={id}
+              className="nav-link"
+              style={{ textDecoration: "none" }}
+            >
+              {navLink.linkName}
+            </button>
+          )
+        })}
+      </div>
+      <button
+        onClick={() => {
+          window.location.href =
+            "https://www.eventbrite.com/e/beyond-the-talk-tickets-190196832847"
+        }}
+        className="nav-btn"
+      >
+        Register for Pre-Event
+      </button>
+      <HamburgerMenu
+        isOpen={isHamOpen}
+        menuClicked={() => {
+          setIsHamOpen(!isHamOpen)
+        }}
+        width={20}
+        height={15}
+        strokeWidth={2}
+        rotate={0}
+        color="#FF4920"
+        borderRadius={0}
+        animationDuration={0.5}
+        className="ham-menu-btn"
+      />
+
+      <AnimatePresence>
+        {isHamOpen && (
+          <StyledHamMenuList
+            initial={{ height: 0 }}
+            animate={{ height: 250 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="ham-menu-list"
+          >
+            {navLinks.map((navLink, id) => {
+              return (
+                <button
+                  onClick={() => scrollTo(navLink.linkUrl)}
+                  key={id}
+                  className="ham-nav-link"
+                  style={{ textDecoration: "none" }}
+                >
+                  {navLink.linkName}
+                </button>
+              )
+            })}
+            <button
+              onClick={() => {
+                window.location.href =
+                  "https://www.eventbrite.com/e/beyond-the-talk-tickets-190196832847"
+              }}
+              className="ham-nav-btn"
+            >
+              Register for Pre-Event
+            </button>
+          </StyledHamMenuList>
+        )}
+      </AnimatePresence>
+    </StyledNav>
+  )
 }
 
-export default Navbar;
+export default Navbar
 
 let StyledNav = styled.nav`
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.473);
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.623);
+  border-radius: 16px;
+  max-width: 1200px;
+  width: 80vw;
+  z-index: 20;
+  color: white;
+  outline: none;
+  .nav-link-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.473);
-    backdrop-filter: blur(20px);
-    box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.623);
-    border-radius: 16px;
-    max-width: 1200px;
-    width: 80vw;
-    z-index: 20;
-    color: white;
-    outline: none;
-    .nav-link-container{
-        display: flex;
+  }
+  .nav-logo {
+    width: 200px;
+  }
+  .ham-menu-btn {
+    display: none;
+    cursor: pointer;
+  }
+  .ham-nav-btn {
+    padding: 5px 10px;
+    background-color: #d92002;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .ham-nav-link {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 17px;
+    margin: 10px 4px;
+    text-transform: uppercase;
+  }
+  .nav-link {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 17px;
+    margin: 0 10px;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+    :hover {
+      background-color: rgba(255, 0, 0, 0.171);
     }
-    .nav-logo{
-        width: 200px
+  }
+  .ham-nav-button {
+    margin-top: 10px;
+  }
+  .nav-btn {
+    padding: 5px 10px;
+    background-color: #d92002;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  @media only screen and (max-width: 1160px) {
+    width: 95vw;
+    .ham-menu-btn,
+    .ham-menu-list {
+      display: flex;
     }
-    .ham-menu-btn{
-        display: none;
-        cursor: pointer;
+    .nav-link,
+    .nav-btn {
+      display: none;
     }
-    .ham-nav-btn{
-        padding: 5px 10px;
-        background-color: #D92002;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 10px;
-        margin-top: 10px;
-    }
-    .ham-nav-link{
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 17px;
-        margin: 10px 4px;
-        text-transform: uppercase;
-    }
-    .nav-link{
-        font-style: normal;
-        font-weight: normal;
-        font-size: 15px;
-        font-weight: bold;
-        line-height: 17px;
-        margin: 0 10px;
-        text-transform: uppercase;
-        padding: 10px;
-        border-radius: 10px;
-        transition: all 0.5s ease-in-out;
-        :hover{
-            background-color: rgba(255, 0, 0, 0.171);
-        }
-    }
-    .ham-nav-button{
-        margin-top: 10px;
-    }
-    .nav-btn{
-        padding: 5px 10px;
-        background-color: #D92002;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 10px;
-    }
-    @media only screen and (max-width: 1160px){
-        width: 95vw;
-        .ham-menu-btn, .ham-menu-list{
-            display: flex;
-        }
-        .nav-link,.nav-btn{
-            display: none;
-        }
-
-    }
+  }
 `
 
 let StyledHamMenuList = styled(motion.div)`
-    position: fixed!important;
-        max-width: 1200px;
-        width: 95vw;
-        background: rgba(0, 0, 0, 0.473);
-        box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.623);
-        display: flex;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(2em);
-        align-items: center;
-        flex-direction: column;
-        top: 100px;
-        left: 0;
-        display: none;
-        box-sizing: border-box;
-        border-radius: 20px;
-        padding: 20px;
-        overflow: hidden;
-        height: 300px;
-        z-index: 11; 
-       
+  position: fixed !important;
+  max-width: 1200px;
+  width: 95vw;
+  background: rgba(0, 0, 0, 0.473);
+  box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.623);
+  display: flex;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(2em);
+  align-items: center;
+  flex-direction: column;
+  top: 100px;
+  left: 0;
+  display: none;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 20px;
+  overflow: hidden;
+  height: 300px;
+  z-index: 11;
 `
