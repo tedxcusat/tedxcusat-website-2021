@@ -8,7 +8,7 @@ const Popup = ({ popupVisible, setPopupVisible }) => {
   return (
     <Modal>
       <header>
-        <p>TedX 2022</p>
+        <p>TEDxCUSAT 2022</p>
         <FeatherIcons
           icon="x"
           size={22}
@@ -37,7 +37,7 @@ let Modal = styled.div`
   background: rgba(0, 0, 0, 0.473);
   backdrop-filter: blur(20px);
   box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.623);
-  position: absolute;
+  position: fixed;
   min-height: 150px;
   display: flex;
   align-items: center;
@@ -73,6 +73,7 @@ let Modal = styled.div`
     justify-content: space-between;
     color: white;
     font-weight: 600;
+    letter-spacing: 1px;
 
     svg {
       cursor: pointer;
