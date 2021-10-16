@@ -1,7 +1,6 @@
 import React from "react"
-import styled from "styled-components"
 
-export default function Lorem() {
+export default function Beyond() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-black text-white">
       <h2 className="text-2xl capitalize font-bold">Beyond "The Talk"</h2>
