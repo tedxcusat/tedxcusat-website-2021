@@ -18,6 +18,7 @@ export default function Beyond() {
         disabled
         // Remove style before event
         style={{ opacity: 0.5, cursor: "not-allowed" }}
+        onClick={() => (window.location.href = "")}
       >
         Join the Event
       </button>
