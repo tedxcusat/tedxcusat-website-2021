@@ -15,10 +15,10 @@ export default function Beyond() {
       </p>
       <button
         className="bg-tedxRed transform transition-all ease-in-out duration-300 text-white py-2 px-8 text-base font-bold uppercase mb-4 rounded-3xl"
-        disabled
+        // disabled
         // Remove style before event
-        style={{ opacity: 0.5, cursor: "not-allowed" }}
-        onClick={() => (window.location.href = "")}
+        // style={{ opacity: 0.5, cursor: "not-allowed" }}
+        onClick={() => (window.location.href = "https://bit.ly/2YILapI")}
       >
         Join the Event
       </button>
