@@ -20,7 +20,7 @@ const Popup = ({ popupVisible, setPopupVisible }) => {
       <StyledButton
         onClick={() => {
           window.location.href =
-            "https://www.eventbrite.com/e/beyond-the-talk-tickets-190196832847"
+            "https://www.eventbrite.com/e/musical-event-registration-207717617987"
         }}
       >
         Register for Pre-Event
